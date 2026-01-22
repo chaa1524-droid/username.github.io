@@ -1,0 +1,46 @@
+/* 기본 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 공통 섹션 */
+.section {
+  width: 100%;
+}
+
+/* 이미지 섹션 */
+.section img {
+  width: 100%;
+  display: block; /* 이미지 아래 여백 제거 */
+}
+
+/* 초록 배경 섹션 */
+.section.green {
+  background-color: #a7b36a; /* FlutterFlow에서 쓰던 초록톤 */
+  color: #ffffff;
+  text-align: center;
+  padding: 48px 20px;
+}
+
+/* Invitation 타이틀 */
+.section.green h2 {
+  font-family: "Georgia", serif;
+  font-style: italic;
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+/* 텍스트 */
+.section.green p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
