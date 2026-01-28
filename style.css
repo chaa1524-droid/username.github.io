@@ -20,7 +20,7 @@ body {
 }
 
 /* 이미지 */
-.section img {
+.section > img {
   width: 100%;
   display: block; /* 이미지 아래 흰 줄 방지 */
 }
