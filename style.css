@@ -45,7 +45,7 @@ html, body {
 }
 
 /* 버튼(링크) 자체 */
-.location-btn {
+.1_button {
   position: absolute;
   z-index: 10;
 
@@ -56,7 +56,7 @@ html, body {
 }
 
 /* 버튼 이미지 크기 */
-.location-btn img {
+.1_button img {
   width: 140px;   /* 버튼 크기 (원하는대로) */
   height: auto;
   display: block;
