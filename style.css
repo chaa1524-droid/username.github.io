@@ -23,3 +23,9 @@ body {
   width: 100%;
   display: block; /* 이미지 아래 흰 줄 방지 */
 }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
