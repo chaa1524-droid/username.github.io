@@ -34,30 +34,30 @@ html, body {
 
 /*-----------------------*/
 /* ✅ 첫 번째 이미지 위에 버튼 얹기 */
-.hero {
-  position: relative;  /* 버튼 위치 기준점 */
+.hero1 {
+  position: relative;
   width: 100%;
 }
 
-.hero-img {
+.hero1-img {
   width: 100%;
   display: block;
 }
 
-/* 버튼(링크) 자체 */
+/* ✅ 버튼은 겹치게 */
 .1_button {
   position: absolute;
   z-index: 10;
 
-  /* ✅ 원하는 위치: 여기 숫자만 바꾸면 됨 */
+  /* 원하는 위치 (일단 예시: 아래쪽 중앙) */
   left: 50%;
-  top: 80%;
-  transform: translate(-50%, -50%);
+  bottom: 6%;
+  transform: translateX(-50%);
 }
 
-/* 버튼 이미지 크기 */
-.1_button img {
-  width: 140px;   /* 버튼 크기 (원하는대로) */
+/* ✅ 버튼 이미지는 100% 규칙을 무시하고 “원하는 크기”로 */
+.1_button .btn-img {
+  width: 160px;     /* 여기로 버튼 크기 조절 */
   height: auto;
   display: block;
 }
