@@ -6,8 +6,6 @@
   box-sizing: border-box;
 }
 
-.hero { outline: 5px solid red; }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
                "Noto Sans KR", sans-serif;
