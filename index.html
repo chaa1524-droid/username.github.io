@@ -24,31 +24,53 @@
   // 기본 상태: OFF
   let isPlaying = false;
 
-  btn.addEventListener("click", async () => {
-    try {
-      if (!isPlaying) {
-        await bgm.play();          // 모바일 정책상 '클릭'이 있어야 재생 가능
-        isPlaying = true;
-        btn.textContent = "🔊";
-      } else {
-        bgm.pause();
-        isPlaying = false;
-        btn.textContent = "🔇";
-      }
-    } catch (e) {
-      // iOS/인앱에서 재생이 막히는 경우 대비
-      alert("음악 재생이 차단되어 있어요. 버튼을 한 번 더 눌러주세요.");
-      console.log(e);
-    }
+  // ✅ 상태 업데이트 함수(아이콘 변경)
+  function setUI(playing) {
+    isPlaying = playing;
+    btn.textContent = playing ? "🔊" : "🔇";
+  }
 
-    window.addEventListener("load", () => {
-      bgm.play().then(() => {
-        isPlaying = true;
-        btn.textContent = "🔊";
-      }).catch(() => {
-        // 모바일에서는 대부분 여기로 떨어짐 (정상)
-      });
-      
+  // ✅ 재생 시도 함수(모바일 정책 때문에 try/catch 필요)
+  async function tryPlay() {
+    try {
+      await bgm.play();
+      setUI(true);
+      return true;
+    } catch (e) {
+      // 자동재생은 모바일에서 대부분 막힘 (정상)
+      return false;
+    }
+  }
+
+  // ✅ 버튼 클릭: 토글
+  btn.addEventListener("click", async () => {
+    if (!isPlaying) {
+      const ok = await tryPlay();
+      if (!ok) {
+        alert("음악 재생이 차단되어 있어요. 화면을 한 번 터치/스크롤한 뒤 다시 눌러주세요.");
+      }
+    } else {
+      bgm.pause();
+      setUI(false);
+    }
+  });
+
+  // ✅ '무조건 자동재생'은 불가능하지만,
+  //    화면 첫 터치/스크롤(사용자 제스처) 순간에 자동으로 켜지게 함 (가장 강력한 대안)
+  const enableBGMOnFirstGesture = async () => {
+    if (!isPlaying) {
+      await tryPlay();
+    }
+  };
+
+  // 터치/클릭/키 입력 중 1회만 잡아서 재생 시도
+  document.addEventListener("touchstart", enableBGMOnFirstGesture, { once: true });
+  document.addEventListener("click", enableBGMOnFirstGesture, { once: true });
+  document.addEventListener("keydown", enableBGMOnFirstGesture, { once: true });
+
+  // ✅ (선택) 페이지 로드시 한번 재생 시도: PC에선 될 수도, 모바일은 대부분 실패(정상)
+  window.addEventListener("load", () => {
+    tryPlay();
   });
 </script>
 
