@@ -6,7 +6,42 @@
   <title>Jiho & HyunA Wedding Invitation</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
+  
 <body>
+  
+<!-- BGM -->
+<audio id="bgm" src="bgm.mp3" preload="auto" loop></audio>
+
+<!-- 우측 상단 고정 버튼 -->
+<button id="bgmToggle" class="bgm-btn" aria-label="Toggle background music" type="button">
+  🔇
+</button>
+
+<script>
+  const bgm = document.getElementById("bgm");
+  const btn = document.getElementById("bgmToggle");
+
+  // 기본 상태: OFF
+  let isPlaying = false;
+
+  btn.addEventListener("click", async () => {
+    try {
+      if (!isPlaying) {
+        await bgm.play();          // 모바일 정책상 '클릭'이 있어야 재생 가능
+        isPlaying = true;
+        btn.textContent = "🔊";
+      } else {
+        bgm.pause();
+        isPlaying = false;
+        btn.textContent = "🔇";
+      }
+    } catch (e) {
+      // iOS/인앱에서 재생이 막히는 경우 대비
+      alert("음악 재생이 차단되어 있어요. 버튼을 한 번 더 눌러주세요.");
+      console.log(e);
+    }
+  });
+</script>
 
 <div class="section">
   <div class="hero">
