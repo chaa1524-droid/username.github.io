@@ -30,3 +30,34 @@ html, body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
+
+
+/*-----------------------*/
+/* ✅ 첫 번째 이미지 위에 버튼 얹기 */
+.hero {
+  position: relative;  /* 버튼 위치 기준점 */
+  width: 100%;
+}
+
+.hero-img {
+  width: 100%;
+  display: block;
+}
+
+/* 버튼(링크) 자체 */
+.location-btn {
+  position: absolute;
+  z-index: 10;
+
+  /* ✅ 원하는 위치: 여기 숫자만 바꾸면 됨 */
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+}
+
+/* 버튼 이미지 크기 */
+.location-btn img {
+  width: 140px;   /* 버튼 크기 (원하는대로) */
+  height: auto;
+  display: block;
+}
