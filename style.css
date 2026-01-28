@@ -63,3 +63,28 @@ html, body {
   display: block;
   max-width: none !important;
 }
+
+
+/*------------BGM 재생 및 버튼 넣기-----------*/
+.bgm-btn {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 99999;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  border: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
