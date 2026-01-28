@@ -40,6 +40,15 @@
       alert("음악 재생이 차단되어 있어요. 버튼을 한 번 더 눌러주세요.");
       console.log(e);
     }
+
+    window.addEventListener("load", () => {
+      bgm.play().then(() => {
+        isPlaying = true;
+        btn.textContent = "🔊";
+      }).catch(() => {
+        // 모바일에서는 대부분 여기로 떨어짐 (정상)
+      });
+      
   });
 </script>
 
