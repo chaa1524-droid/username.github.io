@@ -52,7 +52,7 @@ html, body {
   position: absolute;
   z-index: 9999;
   left: 50%;
-  top: 100%;                 /* ✅ 원하는 위치: 숫자만 바꾸면 됨 */
+  top: 150%;                 /* ✅ 원하는 위치: 숫자만 바꾸면 됨 */
   transform: translate(-50%, -50%);
 }
 
