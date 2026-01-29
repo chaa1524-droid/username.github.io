@@ -196,6 +196,39 @@ html, body {
   border-radius: 999px;
 }
 
+/* 모달 좌/우 네비게이션 버튼 */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 34px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-btn.prev { left: 10px; }
+.nav-btn.next { right: 10px; }
+
+/* 사진 위에 버튼이 올라오도록 */
+.modal-content { position: relative; }
+
+/* 버튼 터치 영역 조금 키우기(모바일) */
+@media (max-width: 420px) {
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 36px;
+  }
+}
+
 
 /*-------------지도 관련------------*/
 /* ✅ 오시는 길 섹션 */
