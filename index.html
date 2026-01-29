@@ -118,7 +118,31 @@
   </div>
 </section>
 
-  
+  <script>
+  // ✅ 주소 복사하기
+  const copyBtn = document.getElementById("copyAddr");
+  const addrEl = document.getElementById("addrText");
+
+  copyBtn?.addEventListener("click", async () => {
+    const text = addrEl?.textContent?.trim() || "";
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("주소가 복사됐어요!");
+    } catch (e) {
+      // iOS/인앱 브라우저 fallback
+      const t = document.createElement("textarea");
+      t.value = text;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+      alert("주소가 복사됐어요!");
+    }
+  });
+</script>
+
 </body>
 </html>
 
