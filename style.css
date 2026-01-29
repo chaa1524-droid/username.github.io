@@ -88,3 +88,45 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+
+/*-------------지도 관련------------*/
+.map-section{
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.map-title{
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.map-preview img{
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+.map-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.addr{
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.copy-btn{
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #d97a86;
+  color: #fff;
+  font-weight: 700;
+}
+
+
