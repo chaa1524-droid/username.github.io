@@ -98,40 +98,25 @@
 
 
 // 지도🗺️ 
-<div class="map-section">
+<!-- ✅ 오시는 길 (지도 미리보기) -->
+<section class="map-section" id="location">
   <h2 class="map-title">오시는 길</h2>
 
   <a class="map-preview"
-     href="https://naver.me/IFgdRRqM"
-     target="_blank" rel="noopener noreferrer">
+     href="https://map.naver.com/p/entry/place/1915861607"
+     target="_blank"
+     rel="noopener noreferrer">
     <img src="map.jpg" alt="네이버 지도 미리보기">
   </a>
 
   <div class="map-info">
-    <p class="addr">서울특별시 용산구 이태원로 29</p>
+    <p class="map-addr" id="addrText">
+      서울특별시 용산구 이태원로 29
+    </p>
+
     <button class="copy-btn" type="button" id="copyAddr">복사하기</button>
   </div>
-</div>
-
-<script>
-  document.getElementById("copyAddr")?.addEventListener("click", async () => {
-    const text = "서울특별시 용산구 이태원로 29";
-    try {
-      await navigator.clipboard.writeText(text);
-      alert("주소가 복사됐어요!");
-    } catch (e) {
-      // 일부 인앱에서 clipboard 막힐 때 fallback
-      const t = document.createElement("textarea");
-      t.value = text;
-      document.body.appendChild(t);
-      t.select();
-      document.execCommand("copy");
-      document.body.removeChild(t);
-      alert("주소가 복사됐어요!");
-    }
-  });
-</script>
-
+</section>
 
   
 </body>
