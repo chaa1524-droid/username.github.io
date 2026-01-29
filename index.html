@@ -139,6 +139,88 @@
   </div>
 </section>
 
+  <script>
+  (function () {
+    const grid = document.getElementById("galleryGrid");
+    const moreBtn = document.getElementById("galleryMoreBtn");
+    const actions = document.getElementById("galleryActions");
+
+    if (!grid) return;
+
+    const batch = Number(grid.dataset.batch || 12);
+    const items = Array.from(grid.querySelectorAll(".g-item"));
+
+    let visibleCount = batch;
+
+    function applyVisibility() {
+      items.forEach((el, idx) => {
+        el.style.display = idx < visibleCount ? "" : "none";
+      });
+
+      // 더 보여줄 게 없으면 버튼 숨김
+      const hasMore = visibleCount < items.length;
+      if (actions) actions.style.display = hasMore ? "flex" : "none";
+
+      // 버튼 텍스트(선택)
+      if (moreBtn) {
+        if (hasMore) {
+          const remain = items.length - visibleCount;
+          // moreBtn.textContent = `더보기 (+${Math.min(batch, remain)})`; // 이렇게 바꾸고 싶으면 사용
+        }
+      }
+    }
+
+    // 초기 적용
+    applyVisibility();
+
+    // 더보기 클릭: 12장씩 추가 표시
+    if (moreBtn) {
+      moreBtn.addEventListener("click", () => {
+        visibleCount = Math.min(visibleCount + batch, items.length);
+        applyVisibility();
+      });
+    }
+
+    // ===== 크게보기 모달(선택) =====
+    const modal = document.getElementById("galleryModal");
+    const modalImage = document.getElementById("modalImage");
+
+    function openModal(src) {
+      if (!modal || !modalImage) return;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      modalImage.src = src;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      if (!modal || !modalImage) return;
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      modalImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    items.forEach((btn) => {
+      btn.addEventListener("click", () => openModal(btn.dataset.full));
+    });
+
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (
+          e.target.classList.contains("modal-backdrop") ||
+          e.target.classList.contains("modal-close")
+        ) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+      });
+    }
+  })();
+</script>
+
+  
 
 <!-- 지도🗺️ ----> 
 <!-- ✅ 오시는 길 (지도 미리보기) -->
