@@ -90,34 +90,39 @@ html, body {
 
 
 /*-------------지도 관련------------*/
+/* ✅ 오시는 길 섹션 */
 .map-section{
   padding: 40px 20px;
-  background: #fff;
+  background: #ffffff;
 }
 
 .map-title{
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  letter-spacing: -0.2px;
 }
 
 .map-preview img{
   width: 100%;
   display: block;
-  border-radius: 16px;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.10);
 }
 
 .map-info{
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   margin-top: 14px;
 }
 
-.addr{
+.map-addr{
   font-size: 14px;
   line-height: 1.4;
+  margin: 0;
+  flex: 1;
 }
 
 .copy-btn{
@@ -127,6 +132,8 @@ html, body {
   background: #d97a86;
   color: #fff;
   font-weight: 700;
+  white-space: nowrap;
 }
-
-
+.copy-btn:active{
+  transform: scale(0.98);
+}
