@@ -96,6 +96,49 @@
   <img src="hero3.jpg" alt="Wedding Photo" />
 </div>
 
+  
+<!------ 갤러리📷 -------->
+  <section class="section" id="gallery">
+  <h2 class="section-title">Gallery</h2>
+
+  <!-- data-total / data-batch는 JS가 읽음 -->
+  <div class="gallery-grid" id="galleryGrid" data-batch="12">
+    <!-- 예시: 필요한 만큼 계속 추가하면 됨 -->
+    <button class="g-item" type="button" data-full="assets/gallery/01.jpg" aria-label="사진 1 크게보기">
+      <img src="assets/gallery/01.jpg" alt="gallery 1" loading="lazy" />
+    </button>
+
+    <button class="g-item" type="button" data-full="assets/gallery/02.jpg" aria-label="사진 2 크게보기">
+      <img src="assets/gallery/02.jpg" alt="gallery 2" loading="lazy" />
+    </button>
+
+    <button class="g-item" type="button" data-full="assets/gallery/03.jpg" aria-label="사진 3 크게보기">
+      <img src="assets/gallery/03.jpg" alt="gallery 3" loading="lazy" />
+    </button>
+
+    <!-- ... 계속 ... -->
+  </div>
+
+  <div class="gallery-actions" id="galleryActions">
+    <button class="more-btn" type="button" id="galleryMoreBtn">
+      더보기
+      <span class="arrow">⌄</span>
+    </button>
+
+    <!-- 화살표 스타일로 하고 싶으면 더보기 텍스트를 빼도 됨 -->
+    <!-- <button class="more-btn icon-only" type="button" id="galleryMoreBtn" aria-label="더보기">⌄</button> -->
+  </div>
+
+  <!-- 크게보기 모달(선택이지만 보통 같이 씀) -->
+  <div class="modal" id="galleryModal" aria-hidden="true">
+    <button class="modal-backdrop" type="button" aria-label="닫기"></button>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <img id="modalImage" src="" alt="확대 이미지" />
+      <button class="modal-close" type="button" aria-label="닫기">×</button>
+    </div>
+  </div>
+</section>
+
 
 <!-- 지도🗺️ ----> 
 <!-- ✅ 오시는 길 (지도 미리보기) -->
