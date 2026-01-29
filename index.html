@@ -144,7 +144,7 @@
 
 </section>
 
-  <script>
+<script>
   (function () {
     const grid = document.getElementById("galleryGrid");
     const moreBtn = document.getElementById("galleryMoreBtn");
@@ -155,6 +155,7 @@
     const batch = Number(grid.dataset.batch || 12);
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
+    // ===== 더보기(12장씩) =====
     let visibleCount = batch;
 
     function applyVisibility() {
@@ -162,23 +163,12 @@
         el.style.display = idx < visibleCount ? "" : "none";
       });
 
-      // 더 보여줄 게 없으면 버튼 숨김
       const hasMore = visibleCount < items.length;
       if (actions) actions.style.display = hasMore ? "flex" : "none";
-
-      // 버튼 텍스트(선택)
-      if (moreBtn) {
-        if (hasMore) {
-          const remain = items.length - visibleCount;
-          // moreBtn.textContent = `더보기 (+${Math.min(batch, remain)})`; // 이렇게 바꾸고 싶으면 사용
-        }
-      }
     }
 
-    // 초기 적용
     applyVisibility();
 
-    // 더보기 클릭: 12장씩 추가 표시
     if (moreBtn) {
       moreBtn.addEventListener("click", () => {
         visibleCount = Math.min(visibleCount + batch, items.length);
@@ -186,16 +176,27 @@
       });
     }
 
-    // ===== 크게보기 모달(선택) =====
+    // ===== 모달: 좌/우 네비게이션 =====
     const modal = document.getElementById("galleryModal");
     const modalImage = document.getElementById("modalImage");
+    const prevBtn = modal?.querySelector(".nav-btn.prev");
+    const nextBtn = modal?.querySelector(".nav-btn.next");
 
-    function openModal(src) {
-      if (!modal || !modalImage) return;
+    let currentIndex = 0;
+
+    function setImageByIndex(idx) {
+      if (!modalImage) return;
+      const safe = (idx + items.length) % items.length; // 순환
+      currentIndex = safe;
+      modalImage.src = items[safe].dataset.full;
+    }
+
+    function openModal(startIndex) {
+      if (!modal) return;
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
-      modalImage.src = src;
       document.body.style.overflow = "hidden";
+      setImageByIndex(startIndex);
     }
 
     function closeModal() {
@@ -206,22 +207,50 @@
       document.body.style.overflow = "";
     }
 
-    items.forEach((btn) => {
-      btn.addEventListener("click", () => openModal(btn.dataset.full));
+    function next() {
+      setImageByIndex(currentIndex + 1);
+    }
+
+    function prev() {
+      setImageByIndex(currentIndex - 1);
+    }
+
+    // 썸네일 클릭 → 해당 index로 열기
+    items.forEach((btn, idx) => {
+      btn.addEventListener("click", () => openModal(idx));
     });
 
-    if (modal) {
-      modal.addEventListener("click", (e) => {
-        if (
-          e.target.classList.contains("modal-backdrop") ||
-          e.target.classList.contains("modal-close")
-        ) closeModal();
-      });
+    // 버튼 클릭
+    nextBtn?.addEventListener("click", next);
+    prevBtn?.addEventListener("click", prev);
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
-      });
-    }
+    // 배경 클릭 닫기
+    modal?.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal-backdrop")) closeModal();
+    });
+
+    // 키보드: Esc 닫기, ← → 넘기기
+    document.addEventListener("keydown", (e) => {
+      if (!modal?.classList.contains("open")) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    // ===== (선택) 스와이프 제스처 =====
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modalImage?.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modalImage?.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const dx = touchEndX - touchStartX;
+      if (Math.abs(dx) < 40) return; // 너무 짧으면 무시
+      if (dx < 0) next(); else prev();
+    }, { passive: true });
   })();
 </script>
 
