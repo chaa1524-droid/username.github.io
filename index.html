@@ -130,13 +130,18 @@
   </div>
 
   <!-- 크게보기 모달(선택이지만 보통 같이 씀) -->
-  <div class="modal" id="galleryModal" aria-hidden="true">
-    <button class="modal-backdrop" type="button" aria-label="닫기"></button>
-    <div class="modal-content" role="dialog" aria-modal="true">
-      <img id="modalImage" src="" alt="확대 이미지" />
-      <button class="modal-close" type="button" aria-label="닫기">×</button>
-    </div>
+<div class="modal" id="galleryModal" aria-hidden="true">
+  <button class="modal-backdrop" type="button" aria-label="닫기"></button>
+
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <button class="nav-btn prev" type="button" aria-label="이전 사진">‹</button>
+
+    <img id="modalImage" src="" alt="확대 이미지" />
+
+    <button class="nav-btn next" type="button" aria-label="다음 사진">›</button>
   </div>
+</div>
+
 </section>
 
   <script>
