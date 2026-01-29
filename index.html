@@ -113,6 +113,28 @@
   </div>
 </div>
 
+<script>
+  document.getElementById("copyAddr")?.addEventListener("click", async () => {
+    const text = "서울특별시 용산구 이태원로 29";
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("주소가 복사됐어요!");
+    } catch (e) {
+      // 일부 인앱에서 clipboard 막힐 때 fallback
+      const t = document.createElement("textarea");
+      t.value = text;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+      alert("주소가 복사됐어요!");
+    }
+  });
+</script>
+
+
   
 </body>
 </html>
+
+
