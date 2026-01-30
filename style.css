@@ -265,3 +265,35 @@ html, body {
 .copy-btn:active{
   transform: scale(0.98);
 }
+
+
+/* --------PC에서만 모바일 프레임처럼 보여주기-------- */
+.phone-stage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: #000; /* 바깥 여백 색(원하면 바꾸기) */
+  padding: 24px 0;
+}
+
+.phone-frame {
+  width: 390px;          /* 폰 폭 */
+  max-width: 100%;
+  background: #fff;      /* 페이지 배경 */
+  border-radius: 24px;   /* 둥근 모서리 */
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* ✅ 실제 모바일에서는 프레임 효과 제거 */
+@media (max-width: 480px) {
+  .phone-stage {
+    padding: 0;
+    background: transparent;
+  }
+  .phone-frame {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
