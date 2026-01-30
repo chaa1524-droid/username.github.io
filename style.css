@@ -30,7 +30,7 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
-  margin: 0; padding: 0;
+  margin: 0; padding: 0; /* PC에서도 모바일용으로 보이기 위해서 해당 한줄 추가 */
 }
 
 /*-----------------------*/
