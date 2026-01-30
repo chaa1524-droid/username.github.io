@@ -173,24 +173,45 @@
     // ✅ 생성 후 다시 items 잡기
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
-    // ===== 2) 더보기(12장씩) =====
-    let visibleCount = batch;
+   // ===== 2) 더보기/접기(한 번에 펼치기) =====
+  let expanded = false;        // false = 접힌 상태(12장), true = 펼친 상태(전체)
+  let visibleCount = batch;    // 처음엔 12장
 
-    function applyVisibility() {
-      items.forEach((el, idx) => {
-        el.style.display = idx < visibleCount ? "" : "none";
-      });
+  function applyVisibility() {
+    items.forEach((el, idx) => {
+      el.style.display = idx < visibleCount ? "" : "none";
+  });
 
-      const hasMore = visibleCount < items.length;
-      if (actions) actions.style.display = hasMore ? "flex" : "none";
+  // 버튼 텍스트 토글
+  if (moreBtn) {
+    moreBtn.innerHTML = expanded
+      ? '접기 <span class="arrow">⌃</span>'
+      : '더보기 <span class="arrow">⌄</span>';
+  }
+
+  // 전체가 12장 이하라면 버튼 숨김
+  if (actions) {
+    actions.style.display = items.length > batch ? "flex" : "none";
+    }
+  }  
+
+  applyVisibility();
+
+  moreBtn?.addEventListener("click", () => {
+    expanded = !expanded;
+
+    if (expanded) {
+    // ✅ 한 번에 전체 펼치기
+      visibleCount = items.length;
+    } else {
+    // ✅ 다시 12장으로 접기 + 갤러리 위치로 자연스럽게 스크롤(선택)
+      visibleCount = batch;
+      //'접기'눌렀을때 스크롤 안움직이게 하고싶으면 해당 문장 삭제
+      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth", block: "start" }); 
     }
 
     applyVisibility();
-
-    moreBtn?.addEventListener("click", () => {
-      visibleCount = Math.min(visibleCount + batch, items.length);
-      applyVisibility();
-    });
+  });
 
     // ===== 3) 모달: 좌/우 넘기기 =====
     const modal = document.getElementById("galleryModal");
