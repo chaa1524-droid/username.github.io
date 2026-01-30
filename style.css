@@ -30,8 +30,8 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
+  margin: 0; padding: 0;
 }
-
 
 /*-----------------------*/
 /* ✅ 첫 번째 이미지 위에 버튼 얹기 */
