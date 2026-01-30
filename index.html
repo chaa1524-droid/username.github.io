@@ -137,22 +137,20 @@
     const grid = document.getElementById("galleryGrid");
     const moreBtn = document.getElementById("galleryMoreBtn");
     const actions = document.getElementById("galleryActions");
-
     if (!grid) return;
 
-    // ✅ 너 상황에 맞게 고정
-    const TOTAL = 43;
+    // ✅ 설정
+    const TOTAL = 43;                 // 사진 개수
     const BASE_PATH = "assets/gallery";
-    const EXT = "jpg";   // 실제 확장자와 동일해야 함
-    const PAD = 2;       // 01~43 이면 2
-
-    const batch = Number(grid.dataset.batch || 12);
+    const EXT = "jpg";                // 확장자
+    const PAD = 2;                    // 01~43이면 2자리
+    const batch = Number(grid.dataset.batch || 12); // 처음 12장
 
     // ===== 1) 43장 썸네일 자동 생성 =====
     const frag = document.createDocumentFragment();
 
     for (let i = 1; i <= TOTAL; i++) {
-      const num = String(i).padStart(PAD, "0"); // 01,02,...43
+      const num = String(i).padStart(PAD, "0");
       const src = `${BASE_PATH}/${num}.${EXT}`;
 
       const btn = document.createElement("button");
@@ -172,7 +170,7 @@
 
     grid.appendChild(frag);
 
-    // ✅ 생성 후에 다시 items를 잡아야 함
+    // ✅ 생성 후 다시 items 잡기
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
     // ===== 2) 더보기(12장씩) =====
@@ -194,7 +192,7 @@
       applyVisibility();
     });
 
-    // ===== 3) 모달: 좌/우 네비게이션 =====
+    // ===== 3) 모달: 좌/우 넘기기 =====
     const modal = document.getElementById("galleryModal");
     const modalImage = document.getElementById("modalImage");
     const prevBtn = modal?.querySelector(".nav-btn.prev");
@@ -204,7 +202,7 @@
 
     function setImageByIndex(idx) {
       if (!modalImage) return;
-      const safe = (idx + items.length) % items.length; // 무한 순환
+      const safe = (idx + items.length) % items.length;
       currentIndex = safe;
       modalImage.src = items[safe].dataset.full;
     }
@@ -228,9 +226,7 @@
     function next() { setImageByIndex(currentIndex + 1); }
     function prev() { setImageByIndex(currentIndex - 1); }
 
-    items.forEach((btn, idx) => {
-      btn.addEventListener("click", () => openModal(idx));
-    });
+    items.forEach((btn, idx) => btn.addEventListener("click", () => openModal(idx)));
 
     nextBtn?.addEventListener("click", next);
     prevBtn?.addEventListener("click", prev);
@@ -246,7 +242,7 @@
       if (e.key === "ArrowLeft") prev();
     });
 
-    // ===== (선택) 스와이프 =====
+    // 스와이프
     let touchStartX = 0;
     let touchEndX = 0;
 
