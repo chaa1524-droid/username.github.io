@@ -90,65 +90,66 @@ html, body {
 
 /*------------- 갤러리 관련-----------*/
 /* ===== 갤러리: 3x4 정사각 + 더보기 ===== */
+/* ===== 갤러리: 여백 0, 라운딩 0, 완전 갤러리 형태 ===== */
+
+/* 섹션 자체 여백 제거 (갤러리만) */
+#gallery.section {
+  padding: 0 !important;
+}
+
+/* 제목도 필요 없으면 숨김(원하면 주석 해제) */
+/* #gallery .section-title { display: none; } */
+
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3열 */
-  gap: 10px;
-  max-width: 560px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;                 /* ✅ 사진 사이 여백 0 */
+  width: 100%;
+  max-width: none;        /* ✅ 중앙 정렬 제한 해제 */
+  margin: 0;              /* ✅ 좌우 여백 제거 */
 }
 
 .g-item {
   padding: 0;
   border: none;
   background: transparent;
-  border-radius: 16px;
+  border-radius: 0;       /* ✅ 라운딩 제거 */
   overflow: hidden;
-  aspect-ratio: 1 / 1; /* ✅ 정사각 */
+  aspect-ratio: 1 / 1;
 }
 
 .g-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ✅ 정사각에 꽉 차게 */
+  object-fit: cover;
   display: block;
-  transform: translateZ(0);
 }
 
-/* 모바일 간격 살짝 줄이기 */
-@media (max-width: 420px) {
-  .gallery-grid {
-    gap: 8px;
-  }
-}
-
+/* 더보기 영역도 여백 최소화 */
 .gallery-actions {
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  padding: 10px 0 14px;   /* 아래 버튼만 살짝 띄움 */
+  margin: 0;
 }
 
-/* ✅ 더보기: 작은 텍스트 느낌 */
 .more-btn {
   border: none;
   background: transparent;
-  font-size: 14px;     /* 작게 */
-  padding: 6px 10px;   /* 얇게 */
-  border-radius: 999px;
+  font-size: 14px;
+  padding: 6px 10px;
   opacity: 0.75;
 }
 
 .more-btn .arrow {
-  display: inline-block;
   margin-left: 4px;
-  transform: translateY(-1px);
 }
 
-.more-btn.icon-only {
-  font-size: 20px;
-  padding: 6px 10px;
-  opacity: 0.75;
+/* 모달은 그대로 두되, 모달 안 라운딩도 빼고 싶으면 아래 적용 */
+.modal-content {
+  border-radius: 0;       /* ✅ (선택) 모달 라운딩 제거 */
 }
+
 
 /* ===== 모달(좌/우 넘기기) ===== */
 .modal {
