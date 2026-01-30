@@ -102,19 +102,7 @@
   <h2 class="section-title">Gallery</h2>
 
   <!-- data-total / data-batch는 JS가 읽음 -->
-  <div class="gallery-grid" id="galleryGrid" data-batch="12">
-    <!-- 예시: 필요한 만큼 계속 추가하면 됨 -->
-    <button class="g-item" type="button" data-full="assets/gallery/01.jpg" aria-label="사진 1 크게보기">
-      <img src="assets/gallery/01.jpg" alt="gallery 1" loading="lazy" />
-    </button>
-
-    <button class="g-item" type="button" data-full="assets/gallery/02.jpg" aria-label="사진 2 크게보기">
-      <img src="assets/gallery/02.jpg" alt="gallery 2" loading="lazy" />
-    </button>
-
-    <button class="g-item" type="button" data-full="assets/gallery/03.jpg" aria-label="사진 3 크게보기">
-      <img src="assets/gallery/03.jpg" alt="gallery 3" loading="lazy" />
-    </button>
+  <div class="gallery-grid" id="galleryGrid" data-batch="12"></div>
 
     <!-- ... 계속 ... -->
   </div>
@@ -152,10 +140,42 @@
 
     if (!grid) return;
 
+    // ✅ 너 상황에 맞게 고정
+    const TOTAL = 43;
+    const BASE_PATH = "assets/gallery";
+    const EXT = "jpg";   // 실제 확장자와 동일해야 함
+    const PAD = 2;       // 01~43 이면 2
+
     const batch = Number(grid.dataset.batch || 12);
+
+    // ===== 1) 43장 썸네일 자동 생성 =====
+    const frag = document.createDocumentFragment();
+
+    for (let i = 1; i <= TOTAL; i++) {
+      const num = String(i).padStart(PAD, "0"); // 01,02,...43
+      const src = `${BASE_PATH}/${num}.${EXT}`;
+
+      const btn = document.createElement("button");
+      btn.className = "g-item";
+      btn.type = "button";
+      btn.dataset.full = src;
+      btn.setAttribute("aria-label", `사진 ${i} 크게보기`);
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `gallery ${i}`;
+      img.loading = "lazy";
+
+      btn.appendChild(img);
+      frag.appendChild(btn);
+    }
+
+    grid.appendChild(frag);
+
+    // ✅ 생성 후에 다시 items를 잡아야 함
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
-    // ===== 더보기(12장씩) =====
+    // ===== 2) 더보기(12장씩) =====
     let visibleCount = batch;
 
     function applyVisibility() {
@@ -169,14 +189,12 @@
 
     applyVisibility();
 
-    if (moreBtn) {
-      moreBtn.addEventListener("click", () => {
-        visibleCount = Math.min(visibleCount + batch, items.length);
-        applyVisibility();
-      });
-    }
+    moreBtn?.addEventListener("click", () => {
+      visibleCount = Math.min(visibleCount + batch, items.length);
+      applyVisibility();
+    });
 
-    // ===== 모달: 좌/우 네비게이션 =====
+    // ===== 3) 모달: 좌/우 네비게이션 =====
     const modal = document.getElementById("galleryModal");
     const modalImage = document.getElementById("modalImage");
     const prevBtn = modal?.querySelector(".nav-btn.prev");
@@ -186,7 +204,7 @@
 
     function setImageByIndex(idx) {
       if (!modalImage) return;
-      const safe = (idx + items.length) % items.length; // 순환
+      const safe = (idx + items.length) % items.length; // 무한 순환
       currentIndex = safe;
       modalImage.src = items[safe].dataset.full;
     }
@@ -207,29 +225,20 @@
       document.body.style.overflow = "";
     }
 
-    function next() {
-      setImageByIndex(currentIndex + 1);
-    }
+    function next() { setImageByIndex(currentIndex + 1); }
+    function prev() { setImageByIndex(currentIndex - 1); }
 
-    function prev() {
-      setImageByIndex(currentIndex - 1);
-    }
-
-    // 썸네일 클릭 → 해당 index로 열기
     items.forEach((btn, idx) => {
       btn.addEventListener("click", () => openModal(idx));
     });
 
-    // 버튼 클릭
     nextBtn?.addEventListener("click", next);
     prevBtn?.addEventListener("click", prev);
 
-    // 배경 클릭 닫기
     modal?.addEventListener("click", (e) => {
       if (e.target.classList.contains("modal-backdrop")) closeModal();
     });
 
-    // 키보드: Esc 닫기, ← → 넘기기
     document.addEventListener("keydown", (e) => {
       if (!modal?.classList.contains("open")) return;
       if (e.key === "Escape") closeModal();
@@ -237,7 +246,7 @@
       if (e.key === "ArrowLeft") prev();
     });
 
-    // ===== (선택) 스와이프 제스처 =====
+    // ===== (선택) 스와이프 =====
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -248,11 +257,12 @@
     modalImage?.addEventListener("touchend", (e) => {
       touchEndX = e.changedTouches[0].screenX;
       const dx = touchEndX - touchStartX;
-      if (Math.abs(dx) < 40) return; // 너무 짧으면 무시
+      if (Math.abs(dx) < 40) return;
       if (dx < 0) next(); else prev();
     }, { passive: true });
   })();
 </script>
+
 
   
 
