@@ -115,7 +115,7 @@ html, body {
   background: transparent;
   border-radius: 0;       /* ✅ 라운딩 제거 */
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4; /* ✅ 가로 3 : 세로 4 */
 }
 
 .g-item img {
