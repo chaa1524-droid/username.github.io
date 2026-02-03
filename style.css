@@ -384,28 +384,6 @@ html, body {
   align-items: center;
 }
 
-.gift-kakao{
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-weight: 900;
-  background:#FEE500;
-  color:#1f2a33;
-  font-size: 16px;
-}
-
-.gift-urlcopy{
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-weight: 900;
-  background:#1f2a33;
-  color:#fff;
-  font-size: 16px;
-}
-
 .gift-foot{
   margin-top: 18px;
   text-align:center;
@@ -431,6 +409,54 @@ html, body {
   transition: opacity .18s ease;
 }
 .gift-toast.show{ opacity: 1; }
+
+
+/* ===== 하단 공유 영역 ===== */
+/* 하단 공유 섹션 배경만 화이트 */
+.share-section {
+  background: #ffffff;   /* ✅ 이 줄만 중요 */
+  padding: 32px 20px 40px;
+}
+
+.share-inner {
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 공통 버튼 */
+.share-btn {
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;     /* ✅ 버튼도 화이트 */
+  color: #222;
+  cursor: pointer;
+}
+
+/* 카카오 버튼 */
+.share-btn.kakao {
+  background: #FEE500;
+  color: #000;
+  border: none;
+}
+
+/* 주소 복사 버튼 */
+.share-btn.link {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+/* 터치 피드백 */
+.share-btn:active {
+  transform: scale(0.98);
+}
 
 
 
