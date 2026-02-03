@@ -487,6 +487,90 @@
   <div class="gift-toast" id="giftToast" aria-hidden="true">복사되었습니다</div>
 </section>
 
+  
+<script>
+  (function(){
+    const toast = document.getElementById('giftToast');
+
+    function showToast(msg){
+      if(!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      toast.setAttribute('aria-hidden','false');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=>{
+        toast.classList.remove('show');
+        toast.setAttribute('aria-hidden','true');
+      }, 1200);
+    }
+
+    // 1) 계좌 복사
+    document.querySelectorAll('.gift-copy').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const text = btn.dataset.copy || '';
+        try{
+          await navigator.clipboard.writeText(text);
+          showToast('복사되었습니다');
+        }catch(e){
+          // fallback (iOS 구형)
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          showToast('복사되었습니다');
+        }
+      });
+    });
+
+    // 2) 청첩장 주소 복사
+    const urlCopyBtn = document.getElementById('urlCopyBtn');
+    urlCopyBtn?.addEventListener('click', async ()=>{
+      const url = location.href;
+      try{
+        await navigator.clipboard.writeText(url);
+        showToast('주소가 복사되었습니다');
+      }catch(e){
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('주소가 복사되었습니다');
+      }
+    });
+
+    // 3) 카카오톡 공유
+    // ✅ 가장 쉬운 방식: Web Share API (모바일에서 카카오 공유 뜨는 경우 많음)
+    const kakaoShareBtn = document.getElementById('kakaoShareBtn');
+    kakaoShareBtn?.addEventListener('click', async ()=>{
+      const shareData = {
+        title: document.title || '모바일 청첩장',
+        text: '저희 결혼식에 초대합니다.',
+        url: location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (e) {
+          // 사용자가 취소한 경우 등
+        }
+      }
+
+      // fallback: 카카오가 안 뜨면 링크라도 복사
+      try{
+        await navigator.clipboard.writeText(location.href);
+        showToast('공유가 어려워 주소를 복사했어요');
+      }catch(e){
+        showToast('공유를 지원하지 않는 환경이에요');
+      }
+    });
+  })();
+</script>
 
 
 
