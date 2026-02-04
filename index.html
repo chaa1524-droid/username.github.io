@@ -466,72 +466,84 @@
 
 
 
-
-
 <!--------마음 전하실 곳 💵 ------>
 
-  <section class="section" id="gift">
+<section class="section" id="gift">
   <div class="gift-wrap">
     <div class="gift-pill">마음 전하실 곳</div>
 
-    <!-- 신랑측 -->
-    <div class="gift-block">
-      <h3 class="gift-title">🤵🏻 신랑측 계좌번호</h3>
-      <div class="gift-line"></div>
+    <!-- ✅ 드랍 2개로 감싸기 -->
+    <div class="gift-accordion">
 
-      <div class="gift-row">
-        <div class="gift-left">
-          <div class="gift-bank">농협 <span class="gift-num">123-1234-1234-12</span></div>
-          <div class="gift-name">안정환</div>
-        </div>
-        <button class="gift-copy" type="button"
-          data-copy="농협 123-1234-1234-12 (안정환)">복사하기</button>
-      </div>
+      <!-- 신랑측 -->
+      <details class="acc-item" open>
+        <summary class="acc-head">
+          <span class="acc-label">신랑측</span>
+          <span class="acc-chevron" aria-hidden="true">⌄</span>
+        </summary>
 
-      <div class="gift-row">
-        <div class="gift-left">
-          <div class="gift-bank">카카오뱅크 <span class="gift-num">123-1234-1234-12</span></div>
-          <div class="gift-name">안재진</div>
+        <div class="acc-body">
+          <div class="gift-row">
+            <div class="gift-left">
+              <div class="gift-bank">농협 <span class="gift-num">123-1234-1234-12</span></div>
+              <div class="gift-name">안정환</div>
+            </div>
+            <button class="gift-copy" type="button"
+              data-copy="농협 123-1234-1234-12 (안정환)">복사하기</button>
+          </div>
+
+          <div class="gift-row">
+            <div class="gift-left">
+              <div class="gift-bank">카카오뱅크 <span class="gift-num">123-1234-1234-12</span></div>
+              <div class="gift-name">안재진</div>
+            </div>
+            <button class="gift-copy" type="button"
+              data-copy="카카오뱅크 123-1234-1234-12 (안재진)">복사하기</button>
+          </div>
         </div>
-        <button class="gift-copy" type="button"
-          data-copy="카카오뱅크 123-1234-1234-12 (안재진)">복사하기</button>
-      </div>
+      </details>
+
+      <!-- 신부측 -->
+      <details class="acc-item">
+        <summary class="acc-head">
+          <span class="acc-label">신부측</span>
+          <span class="acc-chevron" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="acc-body">
+          <div class="gift-row">
+            <div class="gift-left">
+              <div class="gift-bank">카카오뱅크 <span class="gift-num">3333-10-9120397</span></div>
+              <div class="gift-name">조현아</div>
+            </div>
+            <button class="gift-copy" type="button"
+              data-copy="카카오뱅크 3333-10-9120397 (조현아)">복사하기</button>
+          </div>
+
+          <div class="gift-row">
+            <div class="gift-left">
+              <div class="gift-bank">기업은행 <span class="gift-num">003-056967-01-018</span></div>
+              <div class="gift-name">조해성</div>
+            </div>
+            <button class="gift-copy" type="button"
+              data-copy="기업은행 003-056967-01-018 (조해성)">복사하기</button>
+          </div>
+
+          <div class="gift-row">
+            <div class="gift-left">
+              <div class="gift-bank">신한은행 <span class="gift-num">300-11-058881</span></div>
+              <div class="gift-name">최진숙</div>
+            </div>
+            <button class="gift-copy" type="button"
+              data-copy="신한은행 300-11-058881 (최진숙)">복사하기</button>
+          </div>
+        </div>
+      </details>
+
     </div>
-
-    <!-- 신부측 -->
-    <div class="gift-block">
-      <h3 class="gift-title">👰🏻‍♀️ 신부측 계좌번호</h3>
-      <div class="gift-line"></div>
-
-      <div class="gift-row">
-        <div class="gift-left">
-          <div class="gift-bank">카카오뱅크<span class="gift-num"> 3333-10-9120397</span></div>
-          <div class="gift-name">조현아</div>
-        </div>
-        <button class="gift-copy" type="button"
-          data-copy="카카오뱅크 3333-10-9120397 (조현아)">복사하기</button>
-      </div>
-
-      <div class="gift-row">
-        <div class="gift-left">
-          <div class="gift-bank">기업은행<span class="gift-num"> 003-056967-01-018</span></div>
-          <div class="gift-name">조해성</div>
-        </div>
-        <button class="gift-copy" type="button"
-          data-copy="기업은행 003-056967-01-018 (조해성)">복사하기</button>
-      </div>
-    </div>
-
-      <div class="gift-row">
-        <div class="gift-left">
-          <div class="gift-bank">신한은행<span class="gift-num"> 300-11-058881</span></div>
-          <div class="gift-name">최진숙</div>
-        </div>
-        <button class="gift-copy" type="button"
-          data-copy="신한은행 300-11-058881 (최진숙)">복사하기</button>
-      </div>
-    </div>
+  </div>
 </section>
+
   
     <!-- 하단 버튼 -->
 <section class="share-section" id="share">
