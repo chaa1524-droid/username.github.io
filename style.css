@@ -422,6 +422,59 @@ html, body {
   color:#333;
 }
 
+/* ===== gift 드랍(아코디언) UI 추가 ===== */
+.gift-accordion{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top: 18px;
+}
+
+.acc-item summary::-webkit-details-marker { display:none; }
+.acc-item summary { list-style:none; }
+
+.acc-item{
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow:hidden;
+}
+
+.acc-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 16px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.acc-label{
+  font-size:16px;
+  font-weight:800;
+  color:#222;
+}
+
+.acc-chevron{
+  font-size:18px;
+  opacity:.7;
+  transition: transform .18s ease;
+}
+.acc-item[open] .acc-chevron{
+  transform: rotate(180deg);
+}
+
+.acc-body{
+  padding: 0 16px 6px;
+}
+
+/* 아코디언 안에서는 구분선 느낌으로 */
+.acc-body .gift-row{
+  padding: 14px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+/* ===== gift 드랍(아코디언) UI 추가 ===== */
+
 /* 토스트 */
 .gift-toast{
   position: fixed;
