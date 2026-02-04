@@ -544,6 +544,17 @@
   </div>
 </section>
 
+<script>
+  document.querySelectorAll('.gift-accordion .acc-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('.gift-accordion .acc-item').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+</script>
+
   
     <!-- 하단 버튼 -->
 <section class="share-section" id="share">
