@@ -294,6 +294,35 @@ html, body {
   transform: scale(0.98);
 }
 
+/* 오시는 길 하단 교통안내 */
+.route-divider{
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  margin: 18px 0 18px;
+}
+
+.route-guide{
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.route-title{
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+
+.route-text{
+  font-size: 14px;
+  line-height: 1.75;
+  color: #222;
+  word-break: keep-all;
+}
+
+
 /*------마음 전하실 곳 관련 --------*/
 /* ===== 마음 전하실 곳 (하단 섹션) ===== */
 #gift.section{
