@@ -305,6 +305,7 @@ html, body {
   font-size: 14px;
   line-height: 1.4;
   margin: 0;
+  font-weight: 700;
   flex: 1;
 }
 
@@ -367,7 +368,7 @@ html, body {
   margin: 0 auto 18px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: #222;
+  background: #d97a86;
   color: #fff;
   font-weight: 700;
   font-size: 14px;
@@ -430,7 +431,7 @@ html, body {
 
 .gift-copy{
   border: 0;
-  background:#1f2a33;
+  background:#d97a86;
   color:#fff;
   font-weight: 800;
   border-radius: 999px;
