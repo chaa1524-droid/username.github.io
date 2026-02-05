@@ -52,6 +52,7 @@ html, body {
 /* 첫 이미지: 화면 가로 꽉 */
 .hero-img {
   width: 100%;
+  height: auto;
   display: block;
 }
 
