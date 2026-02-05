@@ -328,7 +328,7 @@ html, body {
 /* ===== 마음 전하실 곳 (하단 섹션) ===== */
 #gift.section{
   background:#f6e6e7;     /* 연핑크 배경 느낌 */
-  padding: 28px 18px 24px;
+  padding: 50px 18px 50px;
 }
 
 .gift-wrap{
