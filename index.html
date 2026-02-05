@@ -212,38 +212,33 @@
   
 
 <!------ 갤러리📷 -------->
-  <section class="section" id="gallery">
+<!------ 갤러리📷 -------->
+<section class="section" id="gallery">
   <!-- h2 있던거 삭제했음. 갤러리 제목 -->
-    
-  <!-- data-total / data-batch는 JS가 읽음 -->
-  <div class="gallery-grid" id="galleryGrid" data-batch="12"></div>
 
-    <!-- ... 계속 ... -->
-  </div>
+  <!-- data-batch는 JS가 읽음 -->
+  <div class="gallery-grid" id="galleryGrid" data-batch="12"></div>
 
   <div class="gallery-actions" id="galleryActions">
     <button class="more-btn" type="button" id="galleryMoreBtn">
       더보기
       <span class="arrow">⌄</span>
     </button>
-
-    <!-- 화살표 스타일로 하고 싶으면 더보기 텍스트를 빼도 됨 -->
     <!-- <button class="more-btn icon-only" type="button" id="galleryMoreBtn" aria-label="더보기">⌄</button> -->
   </div>
 
-  <!-- 크게보기 모달(선택이지만 보통 같이 씀) -->
-<div class="modal" id="galleryModal" aria-hidden="true">
-  <button class="modal-backdrop" type="button" aria-label="닫기"></button>
+  <!-- 크게보기 모달 -->
+  <div class="modal" id="galleryModal" aria-hidden="true">
+    <button class="modal-backdrop" type="button" aria-label="닫기"></button>
 
-  <div class="modal-content" role="dialog" aria-modal="true">
-    <button class="nav-btn prev" type="button" aria-label="이전 사진">‹</button>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="nav-btn prev" type="button" aria-label="이전 사진">‹</button>
 
-    <img id="modalImage" src="" alt="확대 이미지" />
+      <img id="modalImage" src="" alt="확대 이미지" />
 
-    <button class="nav-btn next" type="button" aria-label="다음 사진">›</button>
+      <button class="nav-btn next" type="button" aria-label="다음 사진">›</button>
+    </div>
   </div>
-</div>
-
 </section>
 
 <script>
@@ -260,7 +255,7 @@
     const PAD = 2;                    // 01~43이면 2자리
     const batch = Number(grid.dataset.batch || 12); // 처음 12장
 
-    // ===== 1) 42장 썸네일 자동 생성 =====
+    // ===== 1) 42장 썸네일 자동 생성 (✅ g-thumb wrapper 추가) =====
     const frag = document.createDocumentFragment();
 
     for (let i = 1; i <= TOTAL; i++) {
@@ -273,12 +268,23 @@
       btn.dataset.full = src;
       btn.setAttribute("aria-label", `사진 ${i} 크게보기`);
 
+      // ✅ 레이아웃 고정용 wrapper (하얀띠/깨짐 방지 핵심)
+      const wrap = document.createElement("span");
+      wrap.className = "g-thumb";
+
       const img = document.createElement("img");
       img.src = src;
       img.alt = `gallery ${i}`;
       img.loading = "lazy";
+      img.decoding = "async";
 
-      btn.appendChild(img);
+      // ✅ (선택이지만 강추) 비율 힌트: 3:4
+      // 실제 파일 크기와 정확히 일치할 필요는 없고 "비율"만 맞으면 됨
+      img.width = 900;
+      img.height = 1200;
+
+      wrap.appendChild(img);
+      btn.appendChild(wrap);
       frag.appendChild(btn);
     }
 
@@ -287,45 +293,46 @@
     // ✅ 생성 후 다시 items 잡기
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
-   // ===== 2) 더보기/접기(한 번에 펼치기) =====
-  let expanded = false;        // false = 접힌 상태(12장), true = 펼친 상태(전체)
-  let visibleCount = batch;    // 처음엔 12장
+    // ===== 2) 더보기/접기(한 번에 펼치기) =====
+    let expanded = false;      // false = 접힌 상태(12장), true = 펼친 상태(전체)
+    let visibleCount = batch;  // 처음엔 12장
 
-  function applyVisibility() {
-    items.forEach((el, idx) => {
-      el.style.display = idx < visibleCount ? "" : "none";
-  });
+    function applyVisibility() {
+      items.forEach((el, idx) => {
+        el.style.display = idx < visibleCount ? "" : "none";
+      });
 
-  // 버튼 텍스트 토글
-  if (moreBtn) {
-    moreBtn.innerHTML = expanded
-      ? '접기 <span class="arrow">⌃</span>'
-      : '더보기 <span class="arrow">⌄</span>';
-  }
+      // 버튼 텍스트 토글
+      if (moreBtn) {
+        moreBtn.innerHTML = expanded
+          ? '접기 <span class="arrow">⌃</span>'
+          : '더보기 <span class="arrow">⌄</span>';
+      }
 
-  // 전체가 12장 이하라면 버튼 숨김
-  if (actions) {
-    actions.style.display = items.length > batch ? "flex" : "none";
-    }
-  }  
-
-  applyVisibility();
-
-  moreBtn?.addEventListener("click", () => {
-    expanded = !expanded;
-
-    if (expanded) {
-    // ✅ 한 번에 전체 펼치기
-      visibleCount = items.length;
-    } else {
-    // ✅ 다시 12장으로 접기 + 갤러리 위치로 자연스럽게 스크롤(선택)
-      visibleCount = batch;
-      //'접기'눌렀을때 스크롤 안움직이게 하고싶으면 해당 문장 삭제
-      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth", block: "start" }); 
+      // 전체가 batch 이하라면 버튼 숨김
+      if (actions) {
+        actions.style.display = items.length > batch ? "flex" : "none";
+      }
     }
 
     applyVisibility();
-  });
+
+    moreBtn?.addEventListener("click", () => {
+      expanded = !expanded;
+
+      if (expanded) {
+        // ✅ 한 번에 전체 펼치기
+        visibleCount = items.length;
+      } else {
+        // ✅ 다시 12장으로 접기
+        visibleCount = batch;
+
+        // '접기' 눌렀을 때 스크롤 안 움직이게 하고 싶으면 아래 줄 삭제
+        document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      applyVisibility();
+    });
 
     // ===== 3) 모달: 좌/우 넘기기 =====
     const modal = document.getElementById("galleryModal");
@@ -393,6 +400,7 @@
     }, { passive: true });
   })();
 </script>
+
 
 <!--------영상📽️ ---------->
 <!---- 영상 제목 이미지 ----->
