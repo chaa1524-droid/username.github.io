@@ -21,9 +21,17 @@ body {
 }
 
 /* 이미지 */
-.section > img {
+/* ✅ 본문 섹션 이미지: 비율 제각각이어도 안정적으로 로드 */
+.section > img{
   width: 100%;
-  display: block; /* 이미지 아래 흰 줄 방지 */
+  height: auto;        /* ✅ 원본 비율 유지 */
+  display: block;
+  background: #fff;    /* ✅ 로딩 중 배경 */
+}
+
+/* ✅ 로딩 중 하얀 공백이 크게 느껴질 때(선택) */
+.section > img[data-stable]{
+  min-height: 220px;   /* ✅ 레이아웃 확보(원하면 180~320 조절) */
 }
 
 html, body {
