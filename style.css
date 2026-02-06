@@ -532,10 +532,10 @@ html, body {
 /* ===== 하단 공유 영역 ===== */
 /* 하단 공유 섹션 배경만 화이트 */
 /* ===== 공유 버튼 섹션(배경 흰색 + 중앙정렬) ===== */
-#share.section{
-  background: #ffffff;
-  padding: 44px 0 40px;   /* 위/아래 여백 (캡처 느낌) */
-  text-align: center;
+#share{
+  background:#ffffff;
+  padding:44px 0 40px;
+  text-align:center;
 }
 
 /* 버튼 2개를 한 덩어리로 정렬 */
