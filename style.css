@@ -278,9 +278,20 @@ html, body {
 
 /*-------------지도 관련------------*/
 /* ✅ 오시는 길 섹션 */
+/* 기존 백그라운드 코딩 
 .map-section{
   padding: 50px 20px;
   background: #ffffff;
+} */
+
+.map-section{
+  padding: 50px 18px 50px;
+
+  /* ✅ 종이 질감 배경 이미지 적용 */
+  background-image: url("paper-texture.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
 }
 
 .map-title{
