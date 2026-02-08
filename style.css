@@ -335,15 +335,12 @@ html, body {
 
 /* ✅ 여기만 추가됨 (종이 질감 배경) */
 .route-guide{
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-
-  background-image: url("paper-texture.jpg");
-  background-repeat: repeat;
-  background-position: center;
-  background-size: auto;
+  display: flex; 
+  flex-direction: 
+  column; 
+  gap: 26px; 
 }
+
 
 .route-title{
   font-size: 18px;
@@ -361,11 +358,16 @@ html, body {
 }
 
 
-/*------마음 전하실 곳 관련 --------*/
+ /*------마음 전하실 곳 관련 --------*/
 /* ===== 마음 전하실 곳 (하단 섹션) ===== */
 #gift.section{
-  background:#f6e6e7;     /* 연핑크 배경 느낌 */
   padding: 50px 18px 50px;
+
+  /* ✅ 종이 질감 배경 이미지 적용 */
+  background-image: url("info-texture.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
 }
 
 .gift-wrap{
