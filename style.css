@@ -362,7 +362,8 @@ html, body {
 /* ===== 마음 전하실 곳 배경 레이어 고정 ===== */
 #gift{
   position: relative;
-  padding: 0;           /* 이미지가 기준이므로 제거 */
+  padding: 0 !important;      /* ✅ 상하좌우 여백 제거 */
+  overflow: hidden;
 }
 
 /* 이미지 자체가 섹션의 높이를 만듦 */
@@ -372,21 +373,29 @@ html, body {
   height: auto;         /* ⭐️ 이게 핵심 */
 }
 
-/* 기능 영역을 이미지 위에 겹치기 */
+/* 내용(버튼/텍스트)을 이미지 위에 “가운데”로 올리기 */
 #gift .gift-wrap{
   position: absolute;
   inset: 0;
   z-index: 2;
 
-  padding: 50px 18px;
+  display: flex;              /* ✅ 배치 문제 해결 핵심 */
+  flex-direction: column;
+  justify-content: center;    /* 세로 가운데 */
+  align-items: center;        /* 가로 가운데 */
+
+  padding: 24px 18px;         /* 내용 여백 (원하면 조절) */
+  box-sizing: border-box;
+
+  width: 100%;
   max-width: 560px;
   margin: 0 auto;
 }
-
 /*백그라운드 신규 코딩 */
 
 #gift.section{ 
-  padding: 50px 18px 50px;
+  /*원래 코딩 padding: 50px 18px 50px;*/
+  padding: 0 !important;
 }
 
 /*기존 코딩.gift-wrap{
