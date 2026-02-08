@@ -595,6 +595,7 @@
   </div>
 </section>
 
+<!--기존 
 <script>
   document.querySelectorAll('.gift-accordion .acc-item').forEach((item) => {
     item.addEventListener('toggle', () => {
@@ -604,8 +605,19 @@
       });
     });
   });
-</script>
+</script> -->
 
+<!--수정안 JS -->
+<script>
+  document.querySelectorAll(".gift-accordion .acc-item").forEach((d) => {
+    d.addEventListener("toggle", () => {
+      if (!d.open) return;
+      document.querySelectorAll(".gift-accordion .acc-item").forEach((o) => {
+        if (o !== d) o.open = false;
+      });
+    });
+  });
+</script>
 
 <div class="section">
   <img src="hero7.jpg" alt="Wedding Photo" />
