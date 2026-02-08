@@ -360,15 +360,33 @@ html, body {
 
  /*------마음 전하실 곳 관련 --------*/
 /* ===== 마음 전하실 곳 (하단 섹션) ===== */
+
+/*백그라운드 신규 코딩 */
+#gift { position: relative; overflow: hidden; }
+
+#gift .gift-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 배경처럼 꽉 채우기 */
+  z-index: 0;
+}
+
+#gift .gift-wrap{
+  position: relative;
+  z-index: 1;          /* 내용이 이미지 위로 */
+}
+/*백그라운드 신규 코딩 */
+
 #gift.section{ 
-  background:#f6e6e7; /* 연핑크 배경 느낌 */ 
   padding: 50px 18px 50px;
 }
 
-.gift-wrap{
+/*기존 코딩.gift-wrap{
   max-width: 560px;
   margin: 0 auto;
-}
+} */
 
 .gift-pill{
   width: fit-content;
