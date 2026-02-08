@@ -500,12 +500,15 @@ html, body {
 .acc-item summary::-webkit-details-marker { display:none; }
 .acc-item summary { list-style:none; }
 
+/* ===== (수정) 드랍 모양 1번처럼: 헤더+바디가 한 카드처럼 이어지게 ===== */
+
+/* acc-item 자체는 "테두리 카드" 역할을 하지 않게 비움 */
 .acc-item{
-  background:#fff;
-  border:1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;     /* ✅ 버튼 라운드 크게 */
-  overflow: visible;       /* ✅ body가 밖으로 나와도 잘리지 않게 */
-  position: relative;      /* ✅ overlay 기준점 */
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  position: relative;
   z-index: 1;
   box-sizing: border-box;
 }
@@ -515,22 +518,28 @@ html, body {
   z-index: 999;
 }
 
-/* ✅ 헤더(버튼) 크게 */
+/* ✅ 닫혔을 때 버튼(헤더) 자체가 카드처럼 */
 .acc-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   width: 100%;
   box-sizing: border-box;
+
   padding: 14px 16px; /*버튼 세로 넓이 수정*/
   min-height: 56px; /*버튼 세로 넓이 수정*/
+
+  background:#fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;     /* 닫혔을 땐 전체 라운드 */
   cursor:pointer;
   user-select:none;
 }
 
 /* 열렸을 때 헤더 하단 구분선 */
 .acc-item[open] .acc-head{
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
 }
 
 .acc-label{
@@ -548,24 +557,30 @@ html, body {
   transform: rotate(180deg);
 }
 
-/* ✅ 핵심: 펼쳐지는 내용은 absolute로 띄워서 아래 버튼이 밀리지 않게 */
+/* ✅ 핵심: 바디는 overlay 유지하되, "한 카드"처럼 보이게 테두리/라운드 이어붙임 */
 .acc-body{
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(100% - 8px);   /* 헤더 바로 아래에 자연스럽게 붙게 */
-  background: #fff;
+
+  top: calc(100% - 1px);   /* 헤더 테두리와 1px 겹쳐서 이음새 없게 */
+  background:#fff;
+
   border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;
+  border-top: 0;           /* 헤더와 이어지므로 위 테두리 제거 */
+  border-radius: 0 0 16px 16px;
+
   padding: 10px 18px 10px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+
+  box-shadow: none;        /* ✅ 1번처럼 깔끔하게 (원하면 값 줄 수도 있음) */
 }
 
-/* 아코디언 안에서는 구분선 느낌으로 */
+/* 바디 안 구분선은 유지 */
 .acc-body .gift-row{
   padding: 14px 0;
   border-top: 1px solid rgba(0,0,0,0.06);
 }
+
 .acc-body .gift-row:first-child{
   border-top: 0;
 }
