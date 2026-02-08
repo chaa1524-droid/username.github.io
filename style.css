@@ -505,8 +505,8 @@ html, body {
   background:#fff;
   border:1px solid rgba(0,0,0,0.08);
   border-radius: 16px;     /* ✅ 버튼 라운드 더 크게 (2번째 이미지 느낌) */
-  overflow: visible;       /* ✅ 열린 내용이 밖으로 나와도 잘리지 않게 */
   position: relative;
+  overflow: visible; /* body가 밖으로 나와야 해서 */
   z-index: 1;
   box-sizing: border-box;
 }
@@ -546,11 +546,16 @@ html, body {
 }
 
 .acc-body{
-  padding: 0 18px 10px;    /* ✅ 내부 여백도 버튼 크기에 맞춰 조정 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 8px); /* 헤더 아래에 자연스럽게 붙게 (겹침 정도) */
   background: #fff;
-  border-radius: 0 0 16px 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 10px 18px 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
-
 /* 아코디언 안에서는 구분선 느낌으로 */
 .acc-body .gift-row{
   padding: 14px 0;
