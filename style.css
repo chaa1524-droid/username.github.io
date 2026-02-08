@@ -278,21 +278,10 @@ html, body {
 
 /*-------------지도 관련------------*/
 /* ✅ 오시는 길 섹션 */
-/* 기존 백그라운드 코딩 
 .map-section{
   padding: 50px 20px;
   background: #ffffff;
-} */
-
-.map-section{
-  padding: 50px 18px 50px;
-
-  /* ✅ 종이 질감 배경: 화면 꽉 채우기 */
-  background-image: url("paper-texture.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
+} 
 
 .map-title{
   font-size: 20px;
@@ -371,14 +360,9 @@ html, body {
 
  /*------마음 전하실 곳 관련 --------*/
 /* ===== 마음 전하실 곳 (하단 섹션) ===== */
-#gift.section{
+#gift.section{ 
+  background:#f6e6e7; /* 연핑크 배경 느낌 */ 
   padding: 50px 18px 50px;
-
-  /* ✅ 한 장의 배경 이미지처럼 사용 */
-  background-image: url("info-texture.jpg");
-  background-repeat: no-repeat;        /* ❌ 반복 금지 */
-  background-position: top center;     /* 위쪽 기준 */
-  background-size: 100% auto;          /* ✅ 가로 100%, 세로 비율 유지 */
 }
 
 .gift-wrap{
