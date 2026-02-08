@@ -219,8 +219,8 @@ html, body {
   user-select: none;
 }
 
-.nav-btn.prev { left: 10px; }
-.nav-btn.next { right: 10px; }
+.nav-btn.prev { left: 4px; }  /*원래 10px이었는데 수정됨. 좌/우 화살표가 사진 끝쪽에 더 가깝도록 */
+.nav-btn.next { right: 4px; }
 
 /* 모바일에서 버튼 조금 키우기 */
 @media (max-width: 420px) {
