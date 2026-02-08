@@ -333,10 +333,16 @@ html, body {
   margin: 18px 0 18px;
 }
 
+/* ✅ 여기만 추가됨 (종이 질감 배경) */
 .route-guide{
   display: flex;
   flex-direction: column;
   gap: 26px;
+
+  background-image: url("assets/bg/paper-texture.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
 }
 
 .route-title{
