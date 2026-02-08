@@ -147,6 +147,7 @@ html, body {
 .more-btn {
   border: none;
   background: transparent;
+  color: #443119;
   font-size: 14px;
   padding: 6px 10px;
   opacity: 0.75;
