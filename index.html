@@ -17,12 +17,22 @@
 
 <!-- 우측 상단 고정 버튼 -->
 <button id="bgmToggle" class="bgm-btn" aria-label="Toggle background music" type="button">
-  🔇
+  <!-- ✅ [수정] 이모지 텍스트(🔇/🔊) 대신 PNG 이미지로 교체 -->
+  <img
+    id="bgmIcon"
+    class="bgm-icon"
+    src="bgm_off.png"
+    alt=""
+    width="22"
+    height="22"
+    decoding="async"
+  >
 </button>
 
 <script>
   const bgm = document.getElementById("bgm");
   const btn = document.getElementById("bgmToggle");
+  const icon = document.getElementById("bgmIcon"); // ✅ [수정] PNG 아이콘 엘리먼트 추가
 
   // 기본 상태: OFF
   let isPlaying = false;
@@ -30,7 +40,14 @@
   // ✅ 상태 업데이트 함수(아이콘 변경)
   function setUI(playing) {
     isPlaying = playing;
-    btn.textContent = playing ? "🔊" : "🔇";
+
+    // ✅ [수정] btn.textContent 대신 PNG src 교체
+    if (icon) {
+      icon.src = playing ? "bgm_on.png" : "bgm_off.png";
+    }
+
+    // (선택) 접근성: 눌림 상태 표시
+    btn.setAttribute("aria-pressed", playing ? "true" : "false"); // ✅ [수정] aria-pressed 동기화
   }
 
   // ✅ 재생 시도 함수(모바일 정책 때문에 try/catch 필요)
@@ -77,6 +94,7 @@
   });
 </script>
 
+  
 <div class="section">
   <div class="hero">
     <img
