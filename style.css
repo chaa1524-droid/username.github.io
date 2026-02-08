@@ -374,11 +374,11 @@ html, body {
 #gift.section{
   padding: 50px 18px 50px;
 
-  /* ✅ 종이 질감 배경 이미지 적용 */
+  /* ✅ 한 장의 배경 이미지처럼 사용 */
   background-image: url("info-texture.jpg");
-  background-repeat: repeat;
-  background-position: center;
-  background-size: auto;
+  background-repeat: no-repeat;        /* ❌ 반복 금지 */
+  background-position: top center;     /* 위쪽 기준 */
+  background-size: 100% auto;          /* ✅ 가로 100%, 세로 비율 유지 */
 }
 
 .gift-wrap{
