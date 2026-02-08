@@ -375,7 +375,7 @@ html, body {
 
 #gift .gift-wrap{
   position: absolute;   /* ← 여기 변경 */
-  top: 120px;           /* 네가 정하는 위치 */
+  top: 200px;           /* 네가 정하는 위치 */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
