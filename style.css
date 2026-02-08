@@ -339,7 +339,7 @@ html, body {
   flex-direction: column;
   gap: 26px;
 
-  background-image: url("assets/bg/paper-texture.jpg");
+  background-image: url("paper-texture.jpg");
   background-repeat: repeat;
   background-position: center;
   background-size: auto;
