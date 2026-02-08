@@ -99,8 +99,8 @@ html, body {
 
 /* ✅ [수정] 버튼 안 PNG 아이콘 스타일 추가 (기능은 그대로, 표시만 교체) */
 .bgm-btn .bgm-icon{
-  width: 22px;          /* ✅ 아이콘 표시 크기 */
-  height: 22px;         /* ✅ 아이콘 표시 크기 */
+  width: 28px;          /* ✅ 아이콘 표시 크기 */
+  height: 28px;         /* ✅ 아이콘 표시 크기 */
   display: block;
   user-select: none;
   -webkit-user-drag: none;
