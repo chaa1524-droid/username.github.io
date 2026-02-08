@@ -391,8 +391,8 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;                /* ✅ 드랍이 아래 섹션보다 위로 */
-  max-width: 420px;  /*버튼 가로 넓이 수정*/
-  width: min(420px, calc(100% - 70px)); /* ✅ 모바일에서 버튼 작아짐 방지 + 좌우 여백 (가로 넓이 수정)*/
+  max-width: 390px;  /*버튼 가로 넓이 수정*/
+  width: min(390px, calc(100% - 70px)); /* ✅ 모바일에서 버튼 작아짐 방지 + 좌우 여백 (가로 넓이 수정)*/
   margin: 0 auto;
 }
 
