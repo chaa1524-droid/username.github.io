@@ -362,30 +362,27 @@ html, body {
 /* ===== 마음 전하실 곳 배경 레이어 고정 ===== */
 #gift{
   position: relative;
-  overflow: hidden;
-  padding: 50px 18px 50px; /* #gift.section 대신 여기로 */
+  padding: 0;           /* 이미지가 기준이므로 제거 */
 }
 
-/* 배경 이미지 */
+/* 이미지 자체가 섹션의 높이를 만듦 */
 #gift .gift-bg{
+  display: block;
+  width: 100%;
+  height: auto;         /* ⭐️ 이게 핵심 */
+}
+
+/* 기능 영역을 이미지 위에 겹치기 */
+#gift .gift-wrap{
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* ✅ 이미지 전체 다 보이게 */
-  z-index: 0;
-  pointer-events: none; /* ✅ 배경이 클릭/토글 가로채지 않게 */
-}
-
-#gift::before{ display:none; }
-
-/* 내용은 무조건 위로 */
-#gift .gift-wrap{
-  position: relative;
   z-index: 2;
-  max-width: 560px;     /* ✅ 기존 주석 풀어서 복구 추천 */
+
+  padding: 50px 18px;
+  max-width: 560px;
   margin: 0 auto;
 }
+
 /*백그라운드 신규 코딩 */
 
 #gift.section{ 
