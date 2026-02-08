@@ -287,11 +287,11 @@ html, body {
 .map-section{
   padding: 50px 18px 50px;
 
-  /* ✅ 종이 질감 배경 이미지 적용 */
+  /* ✅ 종이 질감 배경: 화면 꽉 채우기 */
   background-image: url("paper-texture.jpg");
-  background-repeat: repeat;
-  background-position: center;
-  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .map-title{
