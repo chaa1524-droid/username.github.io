@@ -381,9 +381,6 @@ html, body {
 
   display: flex;              /* ✅ 배치 문제 해결 핵심 */
   flex-direction: column;
-  justify-content: center;    /* 세로 가운데 */
-  align-items: center;        /* 가로 가운데 */
-
   padding: 24px 18px;         /* 내용 여백 (원하면 조절) */
   box-sizing: border-box;
 
