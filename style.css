@@ -377,16 +377,6 @@ html, body {
   pointer-events: none; /* ✅ 배경이 클릭/토글 가로채지 않게 */
 }
 
-/* (선택) 글씨 잘 보이게 오버레이 */
-#gift::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(255,255,255,0.65);
-  z-index: 1;
-  pointer-events:none;
-}
-
 /* 내용은 무조건 위로 */
 #gift .gift-wrap{
   position: relative;
