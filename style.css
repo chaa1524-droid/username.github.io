@@ -155,6 +155,8 @@ html, body {
 
 .more-btn .arrow {
   margin-left: 4px;
+  position: relative;
+  top: -1px;   /* 숫자 줄수록 더 위로 올라감 */
 }
 
 /* 모달은 그대로 두되, 모달 안 라운딩도 빼고 싶으면 아래 적용 */
