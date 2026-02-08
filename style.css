@@ -373,21 +373,17 @@ html, body {
   height: auto;         /* ⭐️ 이게 핵심 */
 }
 
-/* 내용(버튼/텍스트)을 이미지 위에 “가운데”로 올리기 */
 #gift .gift-wrap{
-  position: absolute;
-  inset: 0;
+  position: absolute;   /* ← 여기 변경 */
+  top: 120px;           /* 네가 정하는 위치 */
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
-
-  display: flex;              /* ✅ 배치 문제 해결 핵심 */
-  flex-direction: column;
-  padding: 24px 18px;         /* 내용 여백 (원하면 조절) */
-  box-sizing: border-box;
-
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
+  
+  max-width: 560px;  /* ✅ 기존 주석 풀어서 복구 추천 */ 
+  margin: 0 auto; 
 }
+
 /*백그라운드 신규 코딩 */
 
 #gift.section{ 
