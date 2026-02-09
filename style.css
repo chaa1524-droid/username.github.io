@@ -315,7 +315,7 @@ html, body {
 }
 
 .map-addr{
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
   margin: 0;
   font-weight: 700;
@@ -324,10 +324,11 @@ html, body {
 
 .copy-btn{
   border: 0;
-  padding: 10px 14px;
+  padding: 10px 18px;
   border-radius: 999px;
   background: #d97a86;
   color: #fff;
+  font-size: 14px;   /* ← 이 줄 추가/수정 */
   font-weight: 700;
   white-space: nowrap;
 }
