@@ -288,7 +288,8 @@ html, body {
 /*-------------지도 관련------------*/
 /* ✅ 오시는 길 섹션 */
 .map-section{
-  padding: 50px 20px;
+  /* padding: 50px 20px; (위아래) (좌우)*/
+  padding: 30px 20px 50px; /*위 / 좌우 / 아래*/
   background: #ffffff;
 } 
 
