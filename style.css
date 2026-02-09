@@ -388,7 +388,7 @@ html, body {
 
 #gift .gift-wrap{
   position: absolute;
-  top: 50%;                 /* 🔥 px → 비율 */
+  top: 45%;                 /* 🔥 px → 비율 */
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;                /* ✅ 드랍이 아래 섹션보다 위로 */
