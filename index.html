@@ -53,6 +53,11 @@
   // 기본 상태: OFF
   let isPlaying = false;
 
+  // ✅ [추가] 영상 때문에 BGM을 껐는지/원래 켜져 있었는지 기록 (2/10) 신규 추가 코딩 영상 재생시 자동 off 
+  let pausedByVideo = false;
+  let wasPlayingBeforeVideo = false;
+
+
   // ✅ 상태 업데이트 함수(아이콘 변경)
   function setUI(playing) {
     isPlaying = playing;
@@ -107,6 +112,19 @@
   // ✅ (선택) 페이지 로드시 한번 재생 시도: PC에선 될 수도, 모바일은 대부분 실패(정상)
   window.addEventListener("load", () => {
     tryPlay();
+
+       // ✅ [추가] 영상 재생 시 BGM 자동 OFF / 종료 후 원복 / (2/10) 신규 추가 코딩 영상 재생시 자동 off
+    document.querySelectorAll("video").forEach((v) => {
+      v.addEventListener("play", () => {
+        wasPlayingBeforeVideo = isPlaying;
+        if (isPlaying) { bgm.pause(); setUI(false); pausedByVideo = true; }
+      });
+
+      v.addEventListener("ended", async () => {
+        if (pausedByVideo && wasPlayingBeforeVideo) await tryPlay();
+        pausedByVideo = false; wasPlayingBeforeVideo = false;
+      });
+    });
   });
 </script>
 
