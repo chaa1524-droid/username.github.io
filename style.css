@@ -216,10 +216,11 @@ html, body {
 }
 
 .modal.open {
-  display: flex;  /*기존 코딩 같이 삽입*/
-  position: fixed; /*해당 3줄 추가분*/
+  display: flex;  /*기존 코딩*/
+  /*
+  position: fixed; 
   width: 100%;
-  overflow: hidden;
+  overflow: hidden;*/
 }
 
 .modal-backdrop {
