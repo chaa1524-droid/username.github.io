@@ -56,6 +56,36 @@ html, body {
   display: block;
 }
 
+
+/* =========================================================
+   ✅✅✅ PC에서 "모바일 화면 프리뷰"처럼 보이게 하기 (추가)
+   - HTML 수정 없이 CSS만으로 적용
+   - 모바일에서는 기존대로 풀폭
+   - PC(큰 화면)에서만 가운데 고정폭 + 좌우 여백
+========================================================= */
+@media (min-width: 768px) {
+  html, body {
+    background: #f3f3f3;          /* PC에서 좌우 여백 배경 */
+  }
+
+  body {
+    max-width: 430px;             /* 모바일 프리뷰 폭 (390~460 취향) */
+    margin: 0 auto;               /* 가운데 정렬 */
+    background: #fff;             /* 프리뷰 카드 배경 */
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12); /* 카드 느낌 */
+    min-height: 100vh;
+  }
+
+  /* 섹션/이미지/히어로가 body 폭을 넘어가지 않게 안전장치 */
+  .section,
+  .section > img,
+  .hero,
+  .hero-img {
+    max-width: 100%;
+  }
+}
+/*=========== PC에서도 모바일 처럼 보이게 하기위해 신규 추가된 css 코딩 =========== */
+
 /* 버튼: 이미지 위에 겹치기 */
 .location-btn {
   position: absolute;
