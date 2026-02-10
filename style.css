@@ -216,8 +216,8 @@ html, body {
 }
 
 .modal.open {
-  /*기존 코딩 display: flex; */
-  position: fixed;
+  display: flex;  /*기존 코딩 같이 삽입*/
+  position: fixed; /*해당 3줄 추가분*/
   width: 100%;
   overflow: hidden;
 }
