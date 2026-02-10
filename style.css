@@ -217,10 +217,9 @@ html, body {
 
 .modal.open {
   display: flex;  /*기존 코딩*/
-  /*
-  position: fixed; 
+  position: fixed; /*3줄 수정 추가 삽입*/
   width: 100%;
-  overflow: hidden;*/
+  overflow: hidden;
 }
 
 .modal-backdrop {
