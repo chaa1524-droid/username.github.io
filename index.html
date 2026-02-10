@@ -297,6 +297,7 @@
       btn.dataset.full = src;
       btn.setAttribute("aria-label", `사진 ${i} 크게보기`);
 
+      // ✅ 레이아웃 고정용 wrapper (하얀띠/깨짐 방지 핵심)
       const wrap = document.createElement("span");
       wrap.className = "g-thumb";
 
@@ -306,6 +307,8 @@
       img.loading = "lazy";
       img.decoding = "async";
 
+      // ✅ (선택이지만 강추) 비율 힌트: 3:4
+      // 실제 파일 크기와 정확히 일치할 필요는 없고 "비율"만 맞으면 됨
       img.width = 900;
       img.height = 1200;
 
@@ -316,23 +319,26 @@
 
     grid.appendChild(frag);
 
+    // ✅ 생성 후 다시 items 잡기
     const items = Array.from(grid.querySelectorAll(".g-item"));
 
     // ===== 2) 더보기/접기(한 번에 펼치기) =====
-    let expanded = false;
-    let visibleCount = batch;
+    let expanded = false;      // false = 접힌 상태(12장), true = 펼친 상태(전체)
+    let visibleCount = batch;  // 처음엔 12장
 
     function applyVisibility() {
       items.forEach((el, idx) => {
         el.style.display = idx < visibleCount ? "" : "none";
       });
 
+      // 버튼 텍스트 토글
       if (moreBtn) {
         moreBtn.innerHTML = expanded
           ? '접기 <span class="arrow">⌃</span>'
           : '더보기 <span class="arrow">⌄</span>';
       }
 
+      // 전체가 batch 이하라면 버튼 숨김
       if (actions) {
         actions.style.display = items.length > batch ? "flex" : "none";
       }
@@ -344,9 +350,13 @@
       expanded = !expanded;
 
       if (expanded) {
+        // ✅ 한 번에 전체 펼치기
         visibleCount = items.length;
       } else {
+        // ✅ 다시 12장으로 접기
         visibleCount = batch;
+
+        // '접기' 눌렀을 때 스크롤 안 움직이게 하고 싶으면 아래 줄 삭제
         document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
@@ -367,62 +377,22 @@
       currentIndex = safe;
       modalImage.src = items[safe].dataset.full;
     }
-    
-    /* ==============================
-    ✅ 추가: 모달 열릴 때 배경 스크롤 완전 고정(iOS 포함)
-    ============================== */
-    let savedScrollY = 0;
-    
-    // ✅ add/remove에 같은 옵션을 쓰기 위해 변수로 고정 (중요)
-    const NON_PASSIVE = { passive: false };
-    
-    function lockBodyScroll() {
-      savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      document.body.classList.add("modal-open");
-      document.body.style.top = `-${savedScrollY}px`;
-    }
-    
-    function unlockBodyScroll() {
-      document.body.classList.remove("modal-open");
-      document.body.style.top = "";
-      window.scrollTo(0, savedScrollY);
-    }
-    
-    // ✅ 배경 스크롤 방지(모달 열려있을 때만)
-    function preventTouchMove(e) {
-      e.preventDefault();
-    }
-    
+
     function openModal(startIndex) {
       if (!modal) return;
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
-    
-      // ✅ 이미지 먼저 세팅
+      document.body.style.overflow = "hidden";
       setImageByIndex(startIndex);
-    
-      // ✅ 배경 고정
-      lockBodyScroll();
-    
-      // ✅ (중요) document가 아니라 "모달 배경(backdrop)"에서만 드래그 차단
-      const backdrop = modal.querySelector(".modal-backdrop");
-      backdrop?.addEventListener("touchmove", preventTouchMove, NON_PASSIVE);
     }
-    
+
     function closeModal() {
       if (!modal || !modalImage) return;
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       modalImage.src = "";
-    
-      // ✅ 배경 고정 해제 + 원래 위치 복원
-      unlockBodyScroll();
-    
-      // ✅ 터치 차단 해제
-      const backdrop = modal.querySelector(".modal-backdrop");
-      backdrop?.removeEventListener("touchmove", preventTouchMove, NON_PASSIVE);
+      document.body.style.overflow = "";
     }
-
 
     function next() { setImageByIndex(currentIndex + 1); }
     function prev() { setImageByIndex(currentIndex - 1); }
